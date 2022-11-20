@@ -1,6 +1,11 @@
 # TkDial
 **This is a circular rotatory dial-knob widget for tkinter. It can be used in place of normal slider.**
 
+## Installation
+```
+pip install tkdial
+```
+
 ## Usage
 
 **Simple Example:**

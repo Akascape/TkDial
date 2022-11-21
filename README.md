@@ -126,4 +126,6 @@ This widget is based on this [VolumeControl](https://github.com/dildeolupbiten/V
 
 I hope it will be helpful for UI development in tkinter.
 
+**Want to contribute?** See [this](https://github.com/Akascape/TkDial/discussions/1)
+
 [<img src="https://img.shields.io/badge/LICENSE-CC0_v0.1-informational?&color=blue&style=for-the-badge" width="200">](https://github.com/Akascape/TkDial/blob/main/LICENSE)

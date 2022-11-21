@@ -3,7 +3,8 @@
 
 [![PyPI](https://img.shields.io/pypi/v/tkdial)](https://pypi.org/project/tkdial)
 ![Platform](https://img.shields.io/powershellgallery/p/Pester?color=blue)
-<!---[![Downloads](https://pepy.tech/badge/tkdial)](https://pepy.tech/project/tkdial) -->
+[![Downloads](https://static.pepy.tech/personalized-badge/tkdial?period=total&units=international_system&left_color=green&right_color=brightgreen&left_text=Downloads)](https://pepy.tech/project/tkdial)
+![Total lines](https://img.shields.io/tokei/lines/github.com/Akascape/tkdial?color=red&label=total%20lines)
 
 ## Installation
 ```

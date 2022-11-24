@@ -19,7 +19,7 @@ from tkdial import Dial
 
 app = tk.Tk()
 
-dial = Dial(app, color_gradient=("white", "black"))
+dial = Dial(app)
 dial.grid(padx=10, pady=10)
 
 app.mainloop()
@@ -33,7 +33,7 @@ from tkdial import Dial
 
 app = tk.Tk()
 
-#Some color combinations
+# some color combinations
 color_combinations = [("yellow", "red"), ("white", "cyan"), ("red", "pink"), ("black", "green"),
                     ("white", "black"), ("blue", "blue"), ("green", "green"), ("white", "pink"),
                     ("red", "black"), ("green", "cyan"), ("cyan","black"), ("pink", "blue")]
@@ -81,7 +81,7 @@ dial3 = Dial(master=frame_1, color_gradient=("white", "pink"), bg="#2a2d2e",
              text_color="white", text=" ", unit_length=10, radius=50)
 dial3.grid(row=0, column=1, padx=20, pady=20)
 
-dial4 = Dial(master=frame_1, color_gradient=("red", "red"), bg="#2a2d2e",
+dial4 = Dial(master=frame_1, color_gradient=("green", "green"), bg="#2a2d2e",
              text_color="white", text="", unit_width=15, radius=50)
 dial4.grid(row=1, column=1, padx=20, pady=20)
 
@@ -110,7 +110,10 @@ app.mainloop()
   | _text_ | A string that will be displayed under the dial object |
   | _text_color_ | Specify the color of the text that will be displayed under the dial object |
   | _text_font_ | Specify the font of the text that will be displayed under the dial object |
-  | _integer_ | A boolean (True/False), displays only the integer value in text if True |
+  | _integer_ | A boolean (True/False), displays only the integer value in text if True (default=False) |
+  | _scroll_ | A boolean (True/False), enables mouse scroll in dial (default=True) |
+  | _scroll_steps_ | Number of steps per scroll |
+  | _state_ | Specify the state of the needle |
   | _command_ | Call a function whenever the needle is rotated |
   
 ### Methods:
@@ -119,11 +122,12 @@ app.mainloop()
   |-----------|-------------|
   | _.get()_ | get the current value of the dial |
   | _.set()_ | set the value of the dial |
-  | _.set_text()_ | configure text of the dial |
+  | _.configure()_ | configure parameters of the dial |
+  
 ## Conclusion
 This widget is based on this [VolumeControl](https://github.com/dildeolupbiten/VolumeControl) widget with lots of modifications.
 
-I hope it will be helpful for UI development in tkinter.
+I hope it will be helpful for UI development in Tkinter.
 
 **Want to contribute?** See [this](https://github.com/Akascape/TkDial/discussions/1)
 

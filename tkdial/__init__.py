@@ -8,6 +8,6 @@ This is licensed under CC0-1.0 Universal.
 Homepage: https://github.com/Akascape/TkDial
 """
 
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 
 from tkdial.tkdial import Dial

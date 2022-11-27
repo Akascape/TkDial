@@ -198,8 +198,10 @@ app.mainloop()
   | _progress_color_ | Define the color of the progress bar |
   | _bar_color_ | Define the color of the progress bar's background |
   | _inner_width_ | Specify the width of the inner ring |
+  | _inner_color_ | Specify the color of the inner ring |
   | _outer_width_ | Specify the width of the outer ring |
   | _outer_length_ | Specify the distance between progress bar and outer ring |
+  | _inner_color_ | Specify the color of the outer ring |
   | _steps_ | Number of steps per scroll |
   | _state_ | Specify the state of the needle |
   | _command_ | Call a function whenever the bar is moved |

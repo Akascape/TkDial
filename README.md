@@ -207,9 +207,9 @@ app.mainloop()
 ### Methods:
   | Methods   | Description |
   |-----------|-------------|
-  | _.get()_ | get the current value of the dial |
-  | _.set()_ | set the value of the dial |
-  | _.configure()_ | configure parameters of the dial | 
+  | _.get()_ | get the current value of the knob |
+  | _.set()_ | set the value of the knob |
+  | _.configure()_ | configure parameters of the knob | 
   
 ## Conclusion
 This library is focused to create some circular widgets that can be used with Tkinter easily.

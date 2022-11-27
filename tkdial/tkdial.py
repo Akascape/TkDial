@@ -142,6 +142,9 @@ class Dial(tk.Canvas):
             super().bind('<MouseWheel>', self.scroll_command)
         
     def scroll_command(self, event):
+        """
+        This function is used to change the value of the dial with mouse scroll
+        """
         if event.delta > 0:        
             if self.value < self.__end:
                 self.set(self.value+self.__scroll_steps)
@@ -215,8 +218,7 @@ class Dial(tk.Canvas):
                     )
                 )
         else:
-            red = Color(self.__color_gradient[0])
-            colors = list(red.range_to(Color(self.__color_gradient[1]),37))
+            colors = list(Color(self.__color_gradient[0]).range_to(Color(self.__color_gradient[1]),37))
             x=0
             
             for index, i in enumerate(range(360, -1, -10)):

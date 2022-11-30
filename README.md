@@ -91,8 +91,7 @@ app.mainloop()
 ```
 ![Screenshot 3](https://user-images.githubusercontent.com/89206401/202906638-a1c863b7-54b0-4e7a-9619-415e28b3ab51.png)
 
-## Documentation
-### Options:
+## Arguments:
   | Parameters  | Description |
   | -------- | ----------- |
   | _master_ | The master parameter is the parent widget |
@@ -167,18 +166,17 @@ knob3 = ScrollKnob(app, bg="#212325", text=" ", radius=250, progress_color="whit
                    outer_width=0, text_font="calibri 20", steps=1, text_color="white", fg="#303ba1")
 knob3.grid(row=0, column=1)
 
-knob4 = ScrollKnob(app, bg=customtkinter.ThemeManager.theme["color"]["window_bg_color"][1],
-                   text=" ", steps=10, radius=200, bar_color="#212325", progress_color="yellow",
-                   outer_color="yellow", outer_length=10, border_width=30, start_angle=270,
-                   inner_width=0, outer_width=5, text_font="calibri 20", text_color="white", fg="#212325")
+knob4 = ScrollKnob(app, bg="#212325", text=" ", steps=10, radius=200, bar_color="#212325", 
+                   progress_color="yellow", outer_color="yellow", outer_length=10, 
+                   border_width=30, start_angle=270, inner_width=0, outer_width=5, text_font="calibri 20", 
+                   text_color="white", fg="#212325")
 knob4.grid(row=1, column=1)
                 
 app.mainloop()      
 ```
 ![Complex example](https://user-images.githubusercontent.com/89206401/204139428-c3c3c313-539f-4867-9d50-8876a19432ee.png)
 
-## Documentation
-### Options:
+## Arguments:
   | Parameters  | Description |
   | -------- | ----------- |
   | _master_ | The master parameter is the parent widget |
@@ -194,13 +192,13 @@ app.mainloop()
   | _text_color_ | Specify the color of the text that will be displayed on the knob |
   | _text_font_ | Specify the font of the text that will be displayed on the knob |
   | _integer_ | A boolean (True/False), displays only the integer value in text if True (default=False) |
-  | _fg_ | Define the color of the inner circle |
+  | _fg_ | Specify the color of the inner circle |
   | _progress_color_ | Define the color of the progress bar |
   | _bar_color_ | Define the color of the progress bar's background |
-  | _inner_width_ | Specify the width of the inner ring |
+  | _inner_width_ | Define the width of the inner ring |
   | _inner_color_ | Specify the color of the inner ring |
-  | _outer_width_ | Specify the width of the outer ring |
-  | _outer_length_ | Specify the distance between progress bar and outer ring |
+  | _outer_width_ | Define the width of the outer ring |
+  | _outer_length_ | Define the distance between progress bar and outer ring |
   | _inner_color_ | Specify the color of the outer ring |
   | _steps_ | Number of steps per scroll |
   | _state_ | Specify the state of the needle |
@@ -212,6 +210,96 @@ app.mainloop()
   | _.get()_ | get the current value of the knob |
   | _.set()_ | set the value of the knob |
   | _.configure()_ | configure parameters of the knob | 
+  
+# Meter
+
+## Usage
+**Simple Example**
+```python
+import tkinter
+from tkdial import Meter
+
+root = tkinter.Tk()
+dial = Meter(root)
+dial.pack(padx=10, pady=10)
+
+root.mainloop()
+```
+![simple_meter](https://user-images.githubusercontent.com/89206401/204718544-c8589399-7f13-44bb-a07d-77f328ce76b9.png)
+
+### **Different Meter Styles:**
+```python
+import customtkinter
+from tkdial import Meter
+
+app = customtkinter.CTk()
+app.geometry("950x350")
+
+meter1 = Meter(app, bg="#212325", radius=300, start=0, end=160, border_width=0,
+               fg="black", text_color="white", start_angle=270, end_angle=-270,
+               text_font="DS-Digital 30", scale_color="white", needle_color="red")
+meter1.set_mark(140, 160) # set red marking from 140 to 160
+meter1.grid(row=0, column=1, padx=20, pady=30)
+
+meter2 = Meter(app, bg="#212325", radius=260, start=0, end=200, border_width=5,
+               fg="black", text_color="white", start_angle=270, end_angle=-360,
+               text_font="DS-Digital 30", scale_color="black", axis_color="white",
+               needle_color="white")
+meter2.set_mark(1, 100, "#92d050")
+meter2.set_mark(105, 150, "yellow")
+meter2.set_mark(155, 196, "red")
+meter2.set(80) # set value
+meter2.grid(row=0, column=0, padx=20, pady=30)
+
+meter3 = Meter(app, bg="#212325", fg="#212325", radius=300, start=0, end=50,
+               major_divisions=10, border_width=0, text_color="white",
+               start_angle=0, end_angle=-360, scale_color="white", axis_color="cyan",
+               needle_color="white",  scroll_steps=0.2)
+meter3.set(15)
+meter3.grid(row=0, column=2, pady=30)
+
+app.mainloop()
+                    
+# Font used: https://www.dafont.com/ds-digital.font
+```
+![styles_meter](https://user-images.githubusercontent.com/89206401/204718389-d3195b3b-0f7a-41c3-85b8-ffc1d961db70.png)
+
+## Arguments:
+  | Parameters  | Description |
+  | -------- | ----------- |
+  | _master_ | The master parameter is the parent widget |
+  | _bg_  | The default background color of the meter widget |
+  | _fg_ | Specify the color of the meter face |
+  | _width_ | Define width of the widget manually (optional) |
+  | _height_ | Define height of the widget manually (optional) |
+  | _start_ |  The start point of the range from where the needle will rotate |
+  | _end_ |  The end point of the range |
+  | _start_angle_ | Determines the starting angle of the arc |
+  | _end_angle_ | Determines the final angle of the arc |
+  | _radius_ | Determines the radius for the widget |
+  | _major_divisions_ | Determines the number of major lines in the scale |
+  | _minor_divisions_ | Determines the number of minor lines in the scale |
+  | _scale_color_ |  Specify the color of the meter scale |
+  | _border_width_ | Define the width of the border case (default=1) |
+  | _border_color_ |  Specify the color of the border case |
+  | _needle_color_ | Specify the color of the needle line |
+  | _axis_color_ | Specify which color of the axis wheel |
+  | _text_ | A string that will be displayed under the meter |
+  | _text_color_ | Specify the color of the text that will be displayed under the meter |
+  | _text_font_ | Specify the font of the text that will be displayed under the meter |
+  | _integer_ | A boolean (True/False), displays only the integer value in text if True (default=False) |
+  | _scroll_ | A boolean (True/False), enables mouse scroll in dial (default=True) |
+  | _scroll_steps_ | Number of steps per scroll |
+  | _state_ | Unbind/Bind the mouse movement with the needle |
+  | _command_ | Call a function whenever the needle is rotated |
+  
+### Methods:
+  | Methods   | Description |
+  |-----------|-------------|
+  | _.get()_ | get the current value of the meter |
+  | _.set()_ | set the value of the meter |
+  | _.configure()_ | configure parameters of the meter| 
+  | _.set_mark()_ | set markings for the scale. Eg: **meter.set_mark(from, to, color)** | 
   
 ## Conclusion
 This library is focused to create some circular widgets that can be used with Tkinter easily.

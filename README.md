@@ -288,7 +288,7 @@ app.mainloop()
   | _text_color_ | Specify the color of the text that will be displayed under the meter |
   | _text_font_ | Specify the font of the text that will be displayed under the meter |
   | _integer_ | A boolean (True/False), displays only the integer value in text if True (default=False) |
-  | _scroll_ | A boolean (True/False), enables mouse scroll in dial (default=True) |
+  | _scroll_ | A boolean (True/False), enables mouse scroll in meter (default=True) |
   | _scroll_steps_ | Number of steps per scroll |
   | _state_ | Unbind/Bind the mouse movement with the needle |
   | _command_ | Call a function whenever the needle is rotated |

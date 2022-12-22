@@ -71,19 +71,19 @@ app.grid_rowconfigure((0,1), weight=1)
 frame_1 = customtkinter.CTkFrame(master=app)
 frame_1.grid(padx=20, pady=20, sticky="nswe")
 
-dial1 = Dial(master=frame_1, color_gradient=("green", "cyan"), bg="#2a2d2e",
+dial1 = Dial(master=frame_1, color_gradient=("green", "cyan"), bg="#2b2b2b",
              text_color="white", text="Current: ", unit_length=10, radius=50)
 dial1.grid(padx=20, pady=20)
 
-dial2 = Dial(master=frame_1, color_gradient=("yellow", "white"), bg="#2a2d2e",
+dial2 = Dial(master=frame_1, color_gradient=("yellow", "white"), bg="#2b2b2b",
              text_color="white", text="Position: ", unit_length=10, radius=50)
 dial2.grid(padx=20, pady=20)
 
-dial3 = Dial(master=frame_1, color_gradient=("white", "pink"), bg="#2a2d2e",
+dial3 = Dial(master=frame_1, color_gradient=("white", "pink"), bg="#2b2b2b",
              text_color="white", text=" ", unit_length=10, radius=50)
 dial3.grid(row=0, column=1, padx=20, pady=20)
 
-dial4 = Dial(master=frame_1, color_gradient=("green", "green"), bg="#2a2d2e",
+dial4 = Dial(master=frame_1, color_gradient=("green", "green"), bg="#2b2b2b",
              text_color="white", text="", unit_width=15, radius=50)
 dial4.grid(row=1, column=1, padx=20, pady=20)
 
@@ -150,23 +150,23 @@ from tkdial import ScrollKnob
 app = customtkinter.CTk()
 app.geometry("500x500")
 
-knob1 = ScrollKnob(app, bg="#212325", radius=250, progress_color="#87ceeb", steps=10,
+knob1 = ScrollKnob(app, bg="#242424", radius=250, progress_color="#87ceeb", steps=10,
                  border_width=40, start_angle=90, inner_width=1, outer_width=1,
                  text_font="calibri 20", text_color="#87ceeb", bar_color="black")
 knob1.grid(row=0, column=0)
 
-knob2 = ScrollKnob(app, bg="#212325", radius=200, progress_color="#7eff00",
+knob2 = ScrollKnob(app, bg="#242424", radius=200, progress_color="#7eff00",
                  border_width=40, start_angle=90, inner_width=1, outer_width=0,
                  text_font="calibri 20", text_color="#7eff00", integer=True,
                  fg="#212325")
 knob2.grid(row=1, column=0)
 
-knob3 = ScrollKnob(app, bg="#212325", text=" ", radius=250, progress_color="white",
+knob3 = ScrollKnob(app, bg="#242424", text=" ", radius=250, progress_color="white",
                    bar_color="#2937a6", border_width=30, start_angle=0, inner_width=5,
                    outer_width=0, text_font="calibri 20", steps=1, text_color="white", fg="#303ba1")
 knob3.grid(row=0, column=1)
 
-knob4 = ScrollKnob(app, bg="#212325", text=" ", steps=10, radius=200, bar_color="#212325", 
+knob4 = ScrollKnob(app, bg="#242424", text=" ", steps=10, radius=200, bar_color="#242424", 
                    progress_color="yellow", outer_color="yellow", outer_length=10, 
                    border_width=30, start_angle=270, inner_width=0, outer_width=5, text_font="calibri 20", 
                    text_color="white", fg="#212325")
@@ -235,13 +235,13 @@ from tkdial import Meter
 app = customtkinter.CTk()
 app.geometry("950x350")
 
-meter1 = Meter(app, bg="#212325", radius=300, start=0, end=160, border_width=0,
+meter1 = Meter(app, bg="#242424", radius=300, start=0, end=160, border_width=0,
                fg="black", text_color="white", start_angle=270, end_angle=-270,
                text_font="DS-Digital 30", scale_color="white", needle_color="red")
 meter1.set_mark(140, 160) # set red marking from 140 to 160
 meter1.grid(row=0, column=1, padx=20, pady=30)
 
-meter2 = Meter(app, bg="#212325", radius=260, start=0, end=200, border_width=5,
+meter2 = Meter(app, bg="#242424", radius=260, start=0, end=200, border_width=5,
                fg="black", text_color="white", start_angle=270, end_angle=-360,
                text_font="DS-Digital 30", scale_color="black", axis_color="white",
                needle_color="white")
@@ -251,7 +251,7 @@ meter2.set_mark(155, 196, "red")
 meter2.set(80) # set value
 meter2.grid(row=0, column=0, padx=20, pady=30)
 
-meter3 = Meter(app, bg="#212325", fg="#212325", radius=300, start=0, end=50,
+meter3 = Meter(app, bg="#242424", fg="#242424", radius=300, start=0, end=50,
                major_divisions=10, border_width=0, text_color="white",
                start_angle=0, end_angle=-360, scale_color="white", axis_color="cyan",
                needle_color="white",  scroll_steps=0.2)

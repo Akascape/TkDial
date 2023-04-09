@@ -64,7 +64,7 @@ class ScrollKnob(tk.Canvas):
         self.text_color = text_color
         self.text_font = text_font
         self.start_ang, self.full_extent = start_angle, 360
-        self.steps = (steps/self.start-self.end)*360
+        self.steps = (steps/abs(self.start-self.end))*360
         self.progress_color = progress_color
         self.delta = 0
         w2 = self.width / 2
@@ -80,8 +80,8 @@ class ScrollKnob(tk.Canvas):
         if self.outer > self.y0:
             self.outer = self.y0
         if text=="":
-            self.disable_text = True          
-        if self.steps > (self.start-self.end):
+            self.disable_text = True     
+        if self.steps > abs(self.start-self.end):
             self.steps = self.start - self.end
             
         self.arc_back = self.create_arc(self.x0, self.y0, self.x1, self.y1, extent=359,
@@ -106,20 +106,18 @@ class ScrollKnob(tk.Canvas):
         """
         This function is used to change the value of the knob with mouse scroll
         """
-        if event.delta > 0:
-            if self.delta>=(360-self.steps):
-                self.itemconfigure(self.arc_id, extent=359)
-                self.delta=360
-            else:
-                self.delta+=self.steps
-                self.itemconfigure(self.arc_id, extent=self.delta)
+        self.delta += event.delta * self.steps
+
+        if self.delta >= 360:
+            self.delta = 360
+            self.itemconfigure(self.arc_id, extent=359)
+        
+        elif self.delta <= 0:
+            self.delta = 0
+            self.itemconfigure(self.arc_id, extent=0)
+
         else:
-            if self.delta<=(0+self.steps):
-                self.itemconfigure(self.arc_id, extent=0)
-                self.delta = 0
-            else:
-                self.delta-=self.steps
-                self.itemconfigure(self.arc_id, extent=self.delta)
+            self.itemconfigure(self.arc_id, extent=self.delta)
 
         self.set_text()
         
@@ -157,7 +155,7 @@ class ScrollKnob(tk.Canvas):
         if value>=self.start:
             value = self.start
 
-        self.delta = 360-(360/(self.end - self.start))*(value - self.start)
+        self.delta = 360-(360/abs(self.end - self.start))*abs(value - self.start)
         self.itemconfigure(self.arc_id, extent=self.delta)
         self.set_text()
         

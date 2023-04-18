@@ -71,23 +71,23 @@ app.grid_rowconfigure((0,1), weight=1)
 frame_1 = customtkinter.CTkFrame(master=app)
 frame_1.grid(padx=20, pady=20, sticky="nswe")
 
-dial1 = Dial(master=frame_1, color_gradient=("green", "cyan"), bg="#2b2b2b",
+dial1 = Dial(master=frame_1, color_gradient=("green", "cyan"),
              text_color="white", text="Current: ", unit_length=10, radius=50)
 dial1.grid(padx=20, pady=20)
 
-dial2 = Dial(master=frame_1, color_gradient=("yellow", "white"), bg="#2b2b2b",
+dial2 = Dial(master=frame_1, color_gradient=("yellow", "white"),
              text_color="white", text="Position: ", unit_length=10, radius=50)
 dial2.grid(padx=20, pady=20)
 
-dial3 = Dial(master=frame_1, color_gradient=("white", "pink"), bg="#2b2b2b",
+dial3 = Dial(master=frame_1, color_gradient=("white", "pink"),
              text_color="white", text=" ", unit_length=10, radius=50)
 dial3.grid(row=0, column=1, padx=20, pady=20)
 
-dial4 = Dial(master=frame_1, color_gradient=("green", "green"), bg="#2b2b2b",
+dial4 = Dial(master=frame_1, color_gradient=("green", "green"),
              text_color="white", text="", unit_width=15, radius=50)
 dial4.grid(row=1, column=1, padx=20, pady=20)
 
-app.mainloop()                  
+app.mainloop()                
 ```
 ![Screenshot 3](https://user-images.githubusercontent.com/89206401/202906638-a1c863b7-54b0-4e7a-9619-415e28b3ab51.png)
 
@@ -150,29 +150,29 @@ from tkdial import ScrollKnob
 app = customtkinter.CTk()
 app.geometry("500x500")
 
-knob1 = ScrollKnob(app, bg="#242424", radius=250, progress_color="#87ceeb", steps=10,
+knob1 = ScrollKnob(app, radius=250, progress_color="#87ceeb", steps=10,
                  border_width=40, start_angle=90, inner_width=1, outer_width=1,
                  text_font="calibri 20", text_color="#87ceeb", bar_color="black")
 knob1.grid(row=0, column=0)
 
-knob2 = ScrollKnob(app, bg="#242424", radius=200, progress_color="#7eff00",
+knob2 = ScrollKnob(app, radius=200, progress_color="#7eff00",
                  border_width=40, start_angle=90, inner_width=1, outer_width=0,
                  text_font="calibri 20", text_color="#7eff00", integer=True,
                  fg="#212325")
 knob2.grid(row=1, column=0)
 
-knob3 = ScrollKnob(app, bg="#242424", text=" ", radius=250, progress_color="white",
+knob3 = ScrollKnob(app, text=" ", radius=250, progress_color="white",
                    bar_color="#2937a6", border_width=30, start_angle=0, inner_width=5,
                    outer_width=0, text_font="calibri 20", steps=1, text_color="white", fg="#303ba1")
 knob3.grid(row=0, column=1)
 
-knob4 = ScrollKnob(app, bg="#242424", text=" ", steps=10, radius=200, bar_color="#242424", 
+knob4 = ScrollKnob(app, text=" ", steps=10, radius=200, bar_color="#242424", 
                    progress_color="yellow", outer_color="yellow", outer_length=10, 
                    border_width=30, start_angle=270, inner_width=0, outer_width=5, text_font="calibri 20", 
                    text_color="white", fg="#212325")
 knob4.grid(row=1, column=1)
                 
-app.mainloop()      
+app.mainloop() 
 ```
 ![Complex example](https://user-images.githubusercontent.com/89206401/204139428-c3c3c313-539f-4867-9d50-8876a19432ee.png)
 
@@ -235,13 +235,13 @@ from tkdial import Meter
 app = customtkinter.CTk()
 app.geometry("950x350")
 
-meter1 = Meter(app, bg="#242424", radius=300, start=0, end=160, border_width=0,
+meter1 = Meter(app, radius=300, start=0, end=160, border_width=0,
                fg="black", text_color="white", start_angle=270, end_angle=-270,
                text_font="DS-Digital 30", scale_color="white", needle_color="red")
 meter1.set_mark(140, 160) # set red marking from 140 to 160
 meter1.grid(row=0, column=1, padx=20, pady=30)
 
-meter2 = Meter(app, bg="#242424", radius=260, start=0, end=200, border_width=5,
+meter2 = Meter(app, radius=260, start=0, end=200, border_width=5,
                fg="black", text_color="white", start_angle=270, end_angle=-360,
                text_font="DS-Digital 30", scale_color="black", axis_color="white",
                needle_color="white")
@@ -251,7 +251,7 @@ meter2.set_mark(155, 196, "red")
 meter2.set(80) # set value
 meter2.grid(row=0, column=0, padx=20, pady=30)
 
-meter3 = Meter(app, bg="#242424", fg="#242424", radius=300, start=0, end=50,
+meter3 = Meter(app, fg="#242424", radius=300, start=0, end=50,
                major_divisions=10, border_width=0, text_color="white",
                start_angle=0, end_angle=-360, scale_color="white", axis_color="cyan",
                needle_color="white",  scroll_steps=0.2)
@@ -259,8 +259,6 @@ meter3.set(15)
 meter3.grid(row=0, column=2, pady=30)
 
 app.mainloop()
-                    
-# Font used: https://www.dafont.com/ds-digital.font
 ```
 ![styles_meter](https://user-images.githubusercontent.com/89206401/204718389-d3195b3b-0f7a-41c3-85b8-ffc1d961db70.png)
 
@@ -291,6 +289,86 @@ app.mainloop()
   | _scroll_ | A boolean (True/False), enables mouse scroll in meter (default=True) |
   | _scroll_steps_ | Number of steps per scroll |
   | _state_ | Unbind/Bind the mouse movement with the needle |
+  | _command_ | Call a function whenever the needle is rotated |
+  
+### Methods:
+  | Methods   | Description |
+  |-----------|-------------|
+  | _.get()_ | get the current value of the meter |
+  | _.set()_ | set the value of the meter |
+  | _.configure()_ | configure parameters of the meter| 
+  | _.set_mark()_ | set markings for the scale. Eg: **meter.set_mark(from, to, color)** | 
+  
+# JogWheel
+
+## Usage
+
+```python
+import tkinter
+from tkdial import Jogwheel
+
+app = tkinter.Tk()
+
+knob = Jogwheel(app)
+knob.grid()
+
+app.mainloop()
+```
+![Jogwheel](https://user-images.githubusercontent.com/89206401/232750598-37f4f863-0aba-48c8-9a69-4cb1e15e1457.png)
+
+### Styles: 
+```python
+import customtkinter
+from tkdial import Jogwheel
+
+app = customtkinter.CTk()
+
+wheel_1 = Jogwheel(app, radius=200, fg="#045252", scale_color="white",
+                text=None, button_radius=10)
+wheel_1.set_mark(0,100, "green")
+
+wheel_1.grid()
+
+wheel_2 = Jogwheel(app, radius=200, fg="#045252", scale_color="white", start_angle=0,
+                   end_angle=360, start=0, end=200, text="Volume: ", button_radius=10)
+wheel_2.set_mark(0,50, "blue")
+wheel_2.set_mark(50, 90, "green")
+wheel_2.set_mark(90, 150, "orange")
+wheel_2.set_mark(150, 200, "red")
+wheel_2.grid()
+
+app.mainloop()
+```
+![Jogwheel styles](https://user-images.githubusercontent.com/89206401/232751129-72d29a4e-d0ea-49b4-9051-e65cabd5fb55.png)
+
+
+## Arguments:
+  | Parameters  | Description |
+  | -------- | ----------- |
+  | _master_ | The master parameter is the parent widget |
+  | _bg_  | The default background color of the meter widget |
+  | _fg_ | Specify the color of the wheel face |
+  | _width_ | Define width of the widget manually (optional) |
+  | _height_ | Define height of the widget manually (optional) |
+  | _start_ |  The start point of the range from where the knob will rotate |
+  | _end_ |  The end point of the range |
+  | _start_angle_ | Determines the starting angle of the arc |
+  | _end_angle_ | Determines the final angle of the arc |
+  | _radius_ | Determines the radius for the widget |
+  | _divisions_ | Determines the number of scale lines in the scale |
+  | _division_height_ | Determines the height of scale lines |
+  | _scale_color_ |  Specify the color of the knob scale |
+  | _border_width_ | Define the width of the border case (default=1) |
+  | _border_color_ |  Specify the color of the border case |
+  | _button_color_ | Specify the color of the knob |
+  | _button_radius_ | Specify the radius the knob |
+  | _text_ | A string that will be displayed |
+  | _text_color_ | Specify the color of the text that will be displayed |
+  | _text_font_ | Specify the font of the text that will be displayed |
+  | _integer_ | A boolean (True/False), displays only the integer value in text if True (default=False) |
+  | _scroll_ | A boolean (True/False), enables mouse scroll (default=True) |
+  | _scroll_steps_ | Number of steps per scroll |
+  | _state_ | Unbind/Bind the mouse movement with the widget |
   | _command_ | Call a function whenever the needle is rotated |
   
 ### Methods:

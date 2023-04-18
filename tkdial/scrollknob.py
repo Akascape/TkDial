@@ -22,7 +22,7 @@ class ScrollKnob(tk.Canvas):
                  inner_width: int = 10,
                  outer_width: int = 10,
                  outer_length: int = 0,
-                 bg: str = "#f0f0f0",
+                 bg: str = None,
                  fg: str = "#f0f0f0",
                  bar_color: str = "#f0f0f0",
                  integer: bool = False,
@@ -64,7 +64,7 @@ class ScrollKnob(tk.Canvas):
         self.text_color = text_color
         self.text_font = text_font
         self.start_ang, self.full_extent = start_angle, 360
-        self.steps = (steps/self.start-self.end)*360
+        self.steps = (steps/abs(self.start-self.end))*360
         self.progress_color = progress_color
         self.delta = 0
         w2 = self.width / 2
@@ -73,6 +73,16 @@ class ScrollKnob(tk.Canvas):
         self.integer = integer
         self.command = command
         
+        if not self.bg:
+            try:
+                if master.winfo_name()=="!ctkframe":
+                    # get bg_color of customtkinter frames
+                    self.bg = master._apply_appearance_mode(master.cget("fg_color"))
+                else:
+                    self.bg = master.cget("bg")
+            except:  
+                self.bg = "white"
+                
         super().__init__(self.__master, bg=self.bg, width=width, height=height, bd=0, highlightthickness=0)
         
         if self.inner > self.x0:
@@ -80,10 +90,17 @@ class ScrollKnob(tk.Canvas):
         if self.outer > self.y0:
             self.outer = self.y0
         if text=="":
-            self.disable_text = True          
-        if self.steps > (self.start-self.end):
-            self.steps = self.start - self.end
-            
+            self.disable_text = True
+
+        if self.steps<0:
+            self.steps = - self.steps
+
+        if self.steps > abs(self.start-self.end):
+            if self.start>self.end:
+                self.steps = self.start - self.end
+            else:
+                self.steps = self.end - self.start
+                
         self.arc_back = self.create_arc(self.x0, self.y0, self.x1, self.y1, extent=359,
                                              start=self.start_ang, outline=self.bar_color,
                                              width=self.width, style='arc')
@@ -92,21 +109,30 @@ class ScrollKnob(tk.Canvas):
                                         start=self.start_ang, outline=self.progress_color,
                                         width=self.width, style='arc')
         
-        self.oval_id1 = self.create_oval(self.x0-w2-self.outer_length, self.y0-w2-self.outer_length, self.x1+w2+self.outer_length, self.y1+w2+self.outer_length, outline=self.outcolor,width=self.outer)
+        self.oval_id1 = self.create_oval(self.x0-w2-self.outer_length, self.y0-w2-self.outer_length, self.x1+w2+self.outer_length,
+                                         self.y1+w2+self.outer_length, outline=self.outcolor,width=self.outer)
         
         self.oval_id2 = self.create_oval(self.x0+w2, self.y0+w2, self.x1-w2, self.y1-w2, width=self.inner, outline=self.incolor, fill=self.fg)
-        
-        self.label_id = self.create_text(self.tx, self.ty, fill=self.text_color, font=self.text_font)        
+     
+        if self.text:
+            self.label_id = self.create_text(self.tx, self.ty, fill=self.text_color, font=self.text_font)        
         self.set_text()
         
         if state=="normal":
             self.bind('<MouseWheel>', self.scroll_command)
-        
+            self.bind("<Button-4>", lambda e: self.scroll_command(-1))
+            self.bind("<Button-5>", lambda e: self.scroll_command(1))
+            
     def scroll_command(self, event):
         """
         This function is used to change the value of the knob with mouse scroll
         """
-        if event.delta > 0:
+        if type(event) is int:
+            event_delta = event
+        else:
+            event_delta = event.delta
+       
+        if event_delta > 0:
             if self.delta>=(360-self.steps):
                 self.itemconfigure(self.arc_id, extent=359)
                 self.delta=360
@@ -130,6 +156,8 @@ class ScrollKnob(tk.Canvas):
         """
         This function is to set text for the knob
         """
+        if not self.text:
+            return
         if self.disable_text==False:
             if self.integer==True:
                 self.value = int(round((self.end - self.start) / 360 * (360 - self.delta) + self.start, 2))
@@ -157,7 +185,7 @@ class ScrollKnob(tk.Canvas):
         if value>=self.start:
             value = self.start
 
-        self.delta = 360-(360/(self.end - self.start))*(value - self.start)
+        self.delta = 360-(360/abs(self.end - self.start))*(value - self.start)
         self.itemconfigure(self.arc_id, extent=self.delta)
         self.set_text()
         
@@ -169,10 +197,15 @@ class ScrollKnob(tk.Canvas):
         This function contains some configurable options
         """
         if "state" in kwargs:
-            if kwargs["scroll"]!="normal":
+            if kwargs["state"]!="normal":
                 super().unbind('<MouseWheel>')
+                super().unbind('<Button-4>')
+                super().unbind('<Button-5>')
             else:
                 super().bind('<MouseWheel>', self.scroll_command)
+                super().bind("<Button-4>", lambda e: self.scroll_command(-1))
+                super().bind("<Button-5>", lambda e: self.scroll_command(1))
+            kwargs.pop("state")
             
         if "text" in kwargs:
              self.itemconfigure(self.label_id,

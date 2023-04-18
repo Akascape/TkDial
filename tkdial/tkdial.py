@@ -18,7 +18,7 @@ class Dial(tk.Canvas):
             unit_length: float = 10,
             unit_width: float = 5,
             radius: float = 50.0,
-            bg: str = "#f0f0f0",
+            bg: str = None,
             text: str = "Value: ",
             unit_color: str = "grey",
             text_color: str = "black",
@@ -131,30 +131,58 @@ class Dial(tk.Canvas):
             ("pink", "pink"): (255, 0, 255, False),
             ("yellow", "yellow"): (255, 255, 0, False)
         }
-        
+        if not self.__bg:
+            try:
+                if master.winfo_name()=="!ctkframe":
+                    # get bg_color of customtkinter frames
+                    self.__bg = master._apply_appearance_mode(master.cget("fg_color"))
+                else:
+                    self.__bg = master.cget("bg")
+            except:  
+                self.__bg = "white"
+                
         super().__init__(self.__master, bg=self.__bg, width=self.__width, height=self.__height, bd=0, highlightthickness=0)
         self.__palette = self.__create_palette()
         self.__create_needle()
         self.__create_units()
-        self.__create_text()
+        if self.__text_title:
+            self.__create_text()
         
         if scroll==True:
             super().bind('<MouseWheel>', self.scroll_command)
-        
+            super().bind("<Button-4>", lambda e: self.scroll_command(-1))
+            super().bind("<Button-5>", lambda e: self.scroll_command(1))
+            
     def scroll_command(self, event):
         """
         This function is used to change the value of the dial with mouse scroll
         """
-        if event.delta > 0:        
-            if self.value < self.__end:
-                self.set(self.value+self.__scroll_steps)
+        if type(event) is int:
+            event_delta = event
         else:
-            if self.value > self.__start:
-                self.set(self.value-self.__scroll_steps)
-            elif  self.value==self.__start:
-                self.set(self.__start+0.1)
-                self.set(self.__start)
-                
+            event_delta = event.delta
+            
+        if event_delta > 0:
+            if self.__end>self.__start:
+                if self.value < self.__end:
+                    self.set(self.value+self.__scroll_steps)
+            else:
+                if self.value > self.__end:
+                    self.set(self.value-self.__scroll_steps)
+        else:
+            if self.__end>self.__start:
+                if self.value > self.__start:
+                    self.set(self.value-self.__scroll_steps)
+                elif self.value==self.__start:
+                    self.set(self.__start+0.1)
+                    self.set(self.__start)
+            else:
+                if self.value > self.__end:
+                    self.set(self.value+self.__scroll_steps)
+                elif self.value==self.__end:
+                    self.set(self.__start+0.1)
+                    self.set(self.__start)
+
     def __line_coordinates(self, r1: float, r2: float, angle: float) -> tuple:
         """
         This function is used for placing the lines around a circle.
@@ -356,16 +384,17 @@ class Dial(tk.Canvas):
             end=int(angle),
             color=self.__unit_color
         )
-        if self.__integer==False:
-            self.itemconfigure(
-                tagOrId="value",
-                text=f"{self.__text_title}{self.value}"
-            )
-        else:
-            self.itemconfigure(
-                tagOrId="value",
-                text=f"{self.__text_title}{int(self.value)}"
-            )
+        if self.__text_title:
+            if self.__integer==False:
+                self.itemconfigure(
+                    tagOrId="value",
+                    text=f"{self.__text_title}{self.value}"
+                )
+            else:
+                self.itemconfigure(
+                    tagOrId="value",
+                    text=f"{self.__text_title}{int(self.value)}"
+                )
         if self.__command is not None:
             self.__command()
             
@@ -393,13 +422,21 @@ class Dial(tk.Canvas):
         """
         This function is used to set the position of the needle
         """
-        if value<self.__start:
-            value = self.__start
-            
-        if value>=self.__end:
-            value = self.__end
-            self.__rotate_needle(self, angle=-350)
-            
+        if self.__start<self.__end:
+            if value<self.__start:
+                value = self.__start
+                
+            if value>=self.__end:
+                value = self.__end
+                self.__rotate_needle(self, angle=-350)
+        else:
+            if value>self.__start:
+                value = self.__start
+                
+            if value<=self.__end:
+                value = self.__end
+                self.__rotate_needle(self, angle=-350)
+                
         angle = float(-(360/(self.__end - self.__start))*(value - self.__start))
         self.__rotate_needle(self, angle=angle)
 
@@ -458,8 +495,12 @@ class Dial(tk.Canvas):
         if "scroll" in kwargs:
             if kwargs["scroll"]==False:
                 super().unbind('<MouseWheel>')
+                super().unbind('<Button-4>')
+                super().unbind('<Button-5>')
             else:
                 super().bind('<MouseWheel>', self.scroll_command)
+                super().bind("<Button-4>", lambda e: self.scroll_command(-1))
+                super().bind("<Button-5>", lambda e: self.scroll_command(1))
             kwargs.pop("scroll")
             
         if "integer" in kwargs:

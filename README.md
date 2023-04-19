@@ -450,7 +450,7 @@ app.mainloop()
   | _.set()_ | set the value of the widget |
   | _.configure()_ | configure parameters of the widget | 
 
-Note: Images should be cropped in fixed ratio and saved with transparency(png).
+Note: Images should be cropped in fixed ratio (1:1) and saved with transparency(png).
 
 ## Conclusion
 This library is focused to create some circular widgets that can be used with **Tkinter/Customtkinter** easily.

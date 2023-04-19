@@ -395,7 +395,7 @@ app.mainloop()
 
 ![customknob](https://user-images.githubusercontent.com/89206401/233058156-007f967e-796c-40f1-9c91-419d990fb725.png)
 
-Styles:
+### Styles:
 ```python
 # Note: images are not provided, only for reference
 import customtkinter

@@ -346,7 +346,7 @@ app.mainloop()
   | Parameters  | Description |
   | -------- | ----------- |
   | _master_ | The master parameter is the parent widget |
-  | _bg_  | The default background color of the meter widget |
+  | _bg_  | The default background color of the widget |
   | _fg_ | Specify the color of the wheel face |
   | _width_ | Define width of the widget manually (optional) |
   | _height_ | Define height of the widget manually (optional) |
@@ -374,15 +374,86 @@ app.mainloop()
 ### Methods:
   | Methods   | Description |
   |-----------|-------------|
-  | _.get()_ | get the current value of the meter |
-  | _.set()_ | set the value of the meter |
-  | _.configure()_ | configure parameters of the meter| 
+  | _.get()_ | get the current value of the knob |
+  | _.set()_ | set the value of the knob |
+  | _.configure()_ | configure parameters of the knob | 
   | _.set_mark()_ | set markings for the scale. Eg: **meter.set_mark(from, to, color)** | 
   
+## ImageKnob
+### Usage
+```python
+import tkinter
+from tkdial import ImageKnob
+
+app = tkinter.Tk()
+
+customknob = ImageKnob(app, image="knob.png")
+customknob.grid()
+
+app.mainloop()
+```
+
+![customknob](https://user-images.githubusercontent.com/89206401/233058156-007f967e-796c-40f1-9c91-419d990fb725.png)
+
+Styles:
+```python
+# Note: images are not provided, only for reference
+import customtkinter
+from tkdial import ImageKnob
+
+app = customtkinter.CTk()
+
+customknob = ImageKnob(app, image="knob.png", text_color="white", text="Volume ")
+customknob.grid(row=0, column=0)
+
+customknob2 = ImageKnob(app, image="knob2.png", scale_image="scale1.png",text="", scale_width=120)
+customknob2.grid(row=0, column=1, padx=20)
+
+customknob3 = ImageKnob(app, image="knob3.png", scale_image="scale2.png",text="",
+                        scale_width=50, start_angle=20, end_angle=-240,
+                        progress_color="cyan", progress=True)
+customknob3.grid(row=0, column=2)
+
+app.mainloop()
+```
+![customknob styles](https://user-images.githubusercontent.com/89206401/233058217-34888954-89dd-4e30-80ac-98f2d4bba6eb.png)
+
+
+## Arguments:
+  | Parameters  | Description |
+  | -------- | ----------- |
+  | _master_ | The master parameter is the parent widget |
+  | _bg_  | The default background color of the widget |
+  | _width_ | Define width of the widget manually (optional) |
+  | _height_ | Define height of the widget manually (optional) |
+  | _start_ |  The start point of the range from where the knob will rotate |
+  | _end_ |  The end point of the range |
+  | _image_ | pass the knob image |
+  | _scale_image_ | add a scale image (optional) |
+  | _scale_width_ | specify relative distance between scale and knob image |
+  | _start_angle_ | Determines the starting angle of the knob |
+  | _end_angle_ | Determines the final angle of the knob |
+  | _radius_ | Determines the radius for the widget |
+  | _text_ | A string that will be displayed |
+  | _text_color_ | Specify the color of the text that will be displayed |
+  | _text_font_ | Specify the font of the text that will be displayed |
+  | _integer_ | A boolean (True/False), displays only the integer value in text if True (default=False) |
+  | _scroll_ | A boolean (True/False), enables mouse scroll (default=True) |
+  | _scroll_steps_ | Number of steps per scroll |
+  | _state_ | Unbind/Bind the mouse movement with the widget |
+  | _command_ | Call a function whenever the needle is rotated |
+  
+### Methods:
+  | Methods   | Description |
+  |-----------|-------------|
+  | _.get()_ | get the current value of the widget |
+  | _.set()_ | set the value of the widget |
+  | _.configure()_ | configure parameters of the widget | 
+
+Note: Images should be cropped in fixed ratio and saved with transparency(png).
+
 ## Conclusion
 This library is focused to create some circular widgets that can be used with Tkinter easily.
 I hope it will be helpful for UI development in python.
-
-**Want to contribute?** See [this](https://github.com/Akascape/TkDial/discussions/1)
 
 [<img src="https://img.shields.io/badge/LICENSE-CC0_v0.1-informational?&color=blue&style=for-the-badge" width="200">](https://github.com/Akascape/TkDial/blob/main/LICENSE)

@@ -453,7 +453,7 @@ app.mainloop()
 Note: Images should be cropped in fixed ratio and saved with transparency(png).
 
 ## Conclusion
-This library is focused to create some circular widgets that can be used with Tkinter easily.
-I hope it will be helpful for UI development in python.
+This library is focused to create some circular widgets that can be used with **Tkinter/Customtkinter** easily.
+I hope it will be helpful in UI development with python.
 
 [<img src="https://img.shields.io/badge/LICENSE-CC0_v0.1-informational?&color=blue&style=for-the-badge" width="200">](https://github.com/Akascape/TkDial/blob/main/LICENSE)

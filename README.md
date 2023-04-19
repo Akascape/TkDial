@@ -108,7 +108,7 @@ app.mainloop()
   | _unit_color_ |  Specify the color of the unit lines |
   | _needle_color_ | Specify the color of the needle line |
   | _color_gradient_ | Specify which color gradient will be used for the units |
-  | _text_ | A string that will be displayed under the dial object |
+  | _text_ | A string that will be displayed under the dial object with value |
   | _text_color_ | Specify the color of the text that will be displayed under the dial object |
   | _text_font_ | Specify the font of the text that will be displayed under the dial object |
   | _integer_ | A boolean (True/False), displays only the integer value in text if True (default=False) |
@@ -188,7 +188,7 @@ app.mainloop()
   | _radius_ | Define the radius of the knob |
   | _border_width_ | Define the width of progress bar with respect to the outer and inner ring |
   | _start_angle_ | Determines the angle from where to rotate |
-  | _text_ | A string that will be displayed on the knob |
+  | _text_ | A string that will be displayed on the knob with value |
   | _text_color_ | Specify the color of the text that will be displayed on the knob |
   | _text_font_ | Specify the font of the text that will be displayed on the knob |
   | _integer_ | A boolean (True/False), displays only the integer value in text if True (default=False) |
@@ -282,7 +282,7 @@ app.mainloop()
   | _border_color_ |  Specify the color of the border case |
   | _needle_color_ | Specify the color of the needle line |
   | _axis_color_ | Specify which color of the axis wheel |
-  | _text_ | A string that will be displayed under the meter |
+  | _text_ | A string that will be displayed under the meter with value  |
   | _text_color_ | Specify the color of the text that will be displayed under the meter |
   | _text_font_ | Specify the font of the text that will be displayed under the meter |
   | _integer_ | A boolean (True/False), displays only the integer value in text if True (default=False) |
@@ -362,7 +362,7 @@ app.mainloop()
   | _border_color_ |  Specify the color of the border case |
   | _button_color_ | Specify the color of the knob |
   | _button_radius_ | Specify the radius the knob |
-  | _text_ | A string that will be displayed |
+  | _text_ | A string that will be displayed with value |
   | _text_color_ | Specify the color of the text that will be displayed |
   | _text_font_ | Specify the font of the text that will be displayed |
   | _integer_ | A boolean (True/False), displays only the integer value in text if True (default=False) |
@@ -434,7 +434,7 @@ app.mainloop()
   | _start_angle_ | Determines the starting angle of the knob |
   | _end_angle_ | Determines the final angle of the knob |
   | _radius_ | Determines the radius for the widget |
-  | _text_ | A string that will be displayed |
+  | _text_ | A string that will be displayed with value |
   | _text_color_ | Specify the color of the text that will be displayed |
   | _text_font_ | Specify the font of the text that will be displayed |
   | _integer_ | A boolean (True/False), displays only the integer value in text if True (default=False) |

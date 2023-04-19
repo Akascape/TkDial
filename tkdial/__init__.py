@@ -6,9 +6,10 @@ This is licensed under CC0-1.0 Universal.
 Homepage: https://github.com/Akascape/TkDial
 """
 
-__version__ = '0.0.5'
+__version__ = '0.0.6'
 
 from .tkdial import Dial
 from .scrollknob import ScrollKnob
 from .meter import Meter
 from .jogwheel import Jogwheel
+from .imageknob import ImageKnob

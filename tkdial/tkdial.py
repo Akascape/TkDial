@@ -133,7 +133,7 @@ class Dial(tk.Canvas):
         }
         if not self.__bg:
             try:
-                if master.winfo_name()=="!ctkframe":
+                if master.winfo_name().startswith("!ctkframe"):
                     # get bg_color of customtkinter frames
                     self.__bg = master._apply_appearance_mode(master.cget("fg_color"))
                 else:

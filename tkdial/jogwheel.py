@@ -65,7 +65,7 @@ class Jogwheel(tk.Canvas):
 
         if not self.bg:
             try:
-                if master.winfo_name()=="!ctkframe":
+                if master.winfo_name().startswith("!ctkframe"):
                     # get bg_color of customtkinter frames
                     self.bg = master._apply_appearance_mode(master.cget("fg_color"))
                 else:

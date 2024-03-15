@@ -17,7 +17,7 @@ class Meter(tk.Canvas):
                  text_color: str = "black",
                  text_font: str = None,
                  border_width: int = 1,
-                 border_color: int = "grey40",
+                 border_color: str = "grey40",
                  major_divisions: int = 10,
                  minor_divisions: int = 1,
                  start_angle: int = 240,
